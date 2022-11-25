@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerRegistrationController {
 
     @PutMapping
-    public void registerNewCustomer(
-            @RequestBody CustomerRegistrationRequest request) {
+    public void registerNewCustomer(@RequestBody CustomerRegistrationRequest request) {
     }
 
 }
