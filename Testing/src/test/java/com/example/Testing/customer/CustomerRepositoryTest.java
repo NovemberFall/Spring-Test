@@ -64,9 +64,10 @@ class CustomerRepositoryTest {
         assertThat(optionalCustomer)
                 .isPresent()
                 .hasValueSatisfying(c -> {
-                    assertThat(c.getId()).isEqualTo(id);
-                    assertThat(c.getName()).isEqualTo("Abel");
-                    assertThat(c.getPhoneNumber()).isEqualTo("0000");
+//                    assertThat(c.getId()).isEqualTo(id);
+//                    assertThat(c.getName()).isEqualTo("Abel");
+//                    assertThat(c.getPhoneNumber()).isEqualTo("0000");
+                    assertThat(c).isEqualToComparingFieldByField(customer);
                 });
     }
 }
