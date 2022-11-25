@@ -67,7 +67,7 @@ class CustomerRegistrationServiceTest {
         // ... a request
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(customer);
 
-        // ... No customer with phone number passed
+        // ... an existing customer is returned
         given(customerRepository.selectCustomerByPhoneNumber(phoneNumber))
                 .willReturn(Optional.of(customer));
 
@@ -79,6 +79,14 @@ class CustomerRegistrationServiceTest {
         then(customerRepository).should(never()).save(any());
 //        then(customerRepository).should().selectCustomerByPhoneNumber(phoneNumber);
 //        then(customerRepository).shouldHaveNoMoreInteractions();
+    }
+
+
+    @Test
+    void itShouldThrowWhenPhoneNumberIsTaken() {
+        // Given
+        // When
+        // Then
     }
 }
 
