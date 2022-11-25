@@ -105,7 +105,7 @@ class CustomerRegistrationServiceTest {
                 .hasMessageContaining(String.format("phone number [%s] is taken", phoneNumber));
 
         // Finally
-        then(customerRepository).should().save(any(Customer.class));
+        then(customerRepository).should(never()).save(any(Customer.class));
     }
 }
 
