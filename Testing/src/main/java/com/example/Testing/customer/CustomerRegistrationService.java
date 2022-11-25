@@ -31,8 +31,8 @@ public class CustomerRegistrationService {
             }
             throw new IllegalStateException(String.format("phone number [%s] is taken", phoneNumber));
         }
-        customerRepository.save(request.getCustomer());
 
+        customerRepository.save(request.getCustomer());
     }
 }
 
