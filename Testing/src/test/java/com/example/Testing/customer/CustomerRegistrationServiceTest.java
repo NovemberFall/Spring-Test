@@ -49,6 +49,6 @@ class CustomerRegistrationServiceTest {
         // Then
         then(customerRepository).should().save(customerArgumentCaptor.capture());
         Customer customerArgumentCaptorValue = customerArgumentCaptor.getValue();
-        assertThat(customerArgumentCaptorValue).isEqualToComparingFieldByField(customer);
+        assertThat(customerArgumentCaptorValue).isEqualTo(customer);
     }
 }
