@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -85,8 +86,26 @@ class CustomerRegistrationServiceTest {
     @Test
     void itShouldThrowWhenPhoneNumberIsTaken() {
         // Given
+        String phoneNumber = "000099";
+
+        Customer customer = new Customer(UUID.randomUUID(), "Maryam", phoneNumber);
+        Customer customerTwo = new Customer(UUID.randomUUID(), "John", phoneNumber);
+
+        // ... a request
+        CustomerRegistrationRequest request = new CustomerRegistrationRequest(customer);
+
+        // ... an existing customer is returned
+        given(customerRepository.selectCustomerByPhoneNumber(phoneNumber))
+                .willReturn(Optional.of(customerTwo));
+
         // When
         // Then
+        assertThatThrownBy(()-> underTest.registerNewCustomer(request))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(String.format("phone number [%s] is taken", phoneNumber));
+
+        // Finally
+        then(customerRepository).should().save(any(Customer.class));
     }
 }
 
