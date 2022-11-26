@@ -107,6 +107,30 @@ class CustomerRegistrationServiceTest {
         // Finally
         then(customerRepository).should(never()).save(any(Customer.class));
     }
+
+
+    @Test
+    void itShouldSaveNewCustomerWhenIdIsNull() {
+        // Given
+        String phoneNumber = "000099";
+        Customer customer = new Customer(null, "Maryam", phoneNumber);
+
+        // ... a request
+        CustomerRegistrationRequest request = new CustomerRegistrationRequest(customer);
+
+        // ... No customer with phone number passed
+        given(customerRepository.selectCustomerByPhoneNumber(phoneNumber))
+                .willReturn(Optional.empty());
+
+        // When
+        underTest.registerNewCustomer(request);
+
+        // Then
+        then(customerRepository).should().save(customerArgumentCaptor.capture());
+        Customer customerArgumentCaptorValue = customerArgumentCaptor.getValue();
+        assertThat(customerArgumentCaptorValue)
+                .isEqualToIgnoringGivenFields(customer, "id");
+    }
 }
 
 
