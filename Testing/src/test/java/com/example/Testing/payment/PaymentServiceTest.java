@@ -75,6 +75,13 @@ class PaymentServiceTest {
                         paymentRequest.getPayment(),
                         "customerId");
 
+        // https://stackoverflow.com/questions/36253040/example-of-mockitos-argumentcaptor
+        assertThat(paymentArgumentCaptorValue.getCustomerId()).isEqualTo(customerId);
+    }
+
+    @Test
+    void itShouldThrowWhenCardIsNotCharged() {
+
     }
 }
 
