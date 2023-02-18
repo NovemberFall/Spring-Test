@@ -32,9 +32,9 @@ public class PaymentService {
         }
 
         // 2. Do we support the currency if not throw
-//        boolean isCurrencySupported = ACCEPTED_CURRENCIES.contains(paymentRequest.getPayment().getCurrency());
-        boolean isCurrencySupported = ACCEPTED_CURRENCIES.stream()
-                .anyMatch(c -> c.equals(paymentRequest.getPayment().getCurrency()));
+        boolean isCurrencySupported = ACCEPTED_CURRENCIES.contains(paymentRequest.getPayment().getCurrency());
+//        boolean isCurrencySupported = ACCEPTED_CURRENCIES.stream()
+//                .anyMatch(c -> c.equals(paymentRequest.getPayment().getCurrency()));
 
         if (!isCurrencySupported) {
             String message = String.format(

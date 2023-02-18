@@ -19,7 +19,9 @@ public class CustomerRegistrationController {
 
     @PutMapping
     public void registerNewCustomer(@RequestBody CustomerRegistrationRequest request) {
-        System.out.println(request);
+//        System.out.println(request);
+
+        customerRegistrationService.registerNewCustomer(request);
     }
 
 }
