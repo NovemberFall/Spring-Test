@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 
 @Entity  //ignore anything coming from client, but
-@JsonIgnoreProperties(value = {"id"}, allowGetters = true)
+@JsonIgnoreProperties(allowGetters = true)
 public class Customer {
 
     @Id

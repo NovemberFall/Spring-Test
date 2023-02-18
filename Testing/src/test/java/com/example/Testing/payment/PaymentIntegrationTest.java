@@ -37,15 +37,15 @@ public class PaymentIntegrationTest {
         ResultActions customerRegResultActions =
                 mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/customer-registration")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(Objects.requireNonNull(objectToJson(customer))));
+                .content(Objects.requireNonNull(objectToJson(customerRegistrationRequest))));
 
         System.out.println(customerRegResultActions);
     }
 
 
-    private String objectToJson(Customer customer) {
+    private String objectToJson(Object object) {
         try {
-            return new ObjectMapper().writeValueAsString(customer);
+            return new ObjectMapper().writeValueAsString(object);
         } catch (JsonProcessingException e) {
             fail("Failed to convert object to json");
             return null;
